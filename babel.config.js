@@ -4,7 +4,7 @@
  */
 const presets = [
   ['@babel/env', {
-    useBuiltIns: 'usage',
+    useBuiltIns: false,
   }],
   ['@babel/preset-react'], // react jsx语法
 ];

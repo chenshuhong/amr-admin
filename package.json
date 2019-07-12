@@ -4,7 +4,8 @@
   "description": "antd+mobx+react+react-router的管理端快速开发框架",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js --progress --profile"
   },
   "repository": {
     "type": "git",
@@ -25,12 +26,12 @@
     "@babel/polyfill": "^7.4.4",
     "antd": "^3.20.1",
     "axios": "^0.19.0",
-    "css-loader": "^3.0.0",
     "mobx": "^5.11.0",
     "mobx-react": "^6.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router": "^5.0.1"
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -41,6 +42,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.12.0",
     "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",

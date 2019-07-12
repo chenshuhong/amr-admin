@@ -17,11 +17,11 @@ module.exports = merge.smartStrategy({
     rules: [{
       test: /\.(css|less)$/,
       use: [MiniCssExtractPlugin.loader],
-      exclude: path.resolve(__dirname, 'node_modules'),
+      include: path.resolve(__dirname, 'node_modules'),
     }, {
       test: /\.(css|less)$/,
       use: [MiniCssExtractPlugin.loader],
-      include: path.resolve(__dirname, 'node_modules'),
+      exclude: path.resolve(__dirname, 'node_modules'),
     }],
   },
   plugins: [

@@ -17,8 +17,9 @@ function getCssModuleLoaders(isOpenCssModule) {
       loader: 'css-loader',
       options: {
         importLoaders: 2, // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, less-loader,针对css里面的@import资源
-        modules: isOpenCssModule, // 开启css module
-        localIdentName: '[path][name]_[local]-[hash:base64:8]',
+        modules: isOpenCssModule?{// 开启css module
+          localIdentName: '[path][name]_[local]-[hash:base64:8]',
+        }:false,
       },
     },
     'postcss-loader',
@@ -67,11 +68,11 @@ module.exports = {
     rules: [{
       test: /\.(css|less)$/,
       use: getCssModuleLoaders(false),
-      exclude: path.resolve(__dirname, 'src'),
+      include: path.resolve(__dirname, 'node_modules'),
     }, {
       test: /\.(css|less)$/,
-      use: getCssModuleLoaders(true),
-      include: path.resolve(__dirname, 'src'),
+      use: getCssModuleLoaders(false),
+      exclude: path.resolve(__dirname, 'node_modules'),
     }, /*{
       test: /\.js$/,
       loader: 'eslint-loader',

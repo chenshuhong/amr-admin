@@ -9,7 +9,7 @@ import style from './index.less'
 export default class extends React.Component{
   render(){
     return (
-      <div>
+      <div className={style.header}>
         <div className={style.logo} />
         <Menu
           theme="dark"
