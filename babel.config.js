@@ -12,6 +12,8 @@ const presets = [
 const plugins = [
   ['import', { libraryName: 'antd', style: true }], // antd需要加载
   '@babel/plugin-syntax-dynamic-import', // 动态导入语法
+  ["@babel/plugin-proposal-decorators", { "legacy": true}],//装饰器语法
+  ["@babel/plugin-proposal-class-properties", { "loose": true}]
 ];
 
 module.exports = { presets, plugins };

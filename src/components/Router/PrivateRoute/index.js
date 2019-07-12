@@ -5,9 +5,8 @@
  */
 import React from 'react';
 import { Redirect, Route } from "react-router-dom";
-import { connect } from 'react-redux';
 
-function PrivateRoute({ component: Component, app, ...rest }) {
+export default function PrivateRoute({ component: Component, app, ...rest }) {
   return (
     <Route
       {...rest}
@@ -25,9 +24,3 @@ function PrivateRoute({ component: Component, app, ...rest }) {
     />
   );
 }
-
-const mapStateToProps = state => ({
-  app: state.app,
-});
-
-export default connect(mapStateToProps)(PrivateRoute);

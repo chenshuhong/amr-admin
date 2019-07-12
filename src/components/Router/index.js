@@ -10,9 +10,11 @@ import {
   Switch,
 } from 'react-router-dom';
 import Loadable from 'react-loadable';// react-loadable 对于有动态导入的组件来说是一个高阶组件。它可以自动处理各种边缘情况，并且使代码拆分变得简单！
-import style from './index.less'
 import routeConfig from 'config/routes.config'
 import Loading from 'components/Loading'
+import PrivateRoute from './PrivateRoute'
+import LoginRoute from './LoginRoute'
+import style from './index.less'
 
 // react-loadable 实现代码分割
 function getLoadableComponent(componentImportFn, props) {
@@ -60,9 +62,6 @@ function loopRoutes(routes, match = {}) {
         exact
         path="/login"
         component={getLoadableComponent(() => import(/* webpackChunkName: "login" */'page/Login'))}
-      />
-      <Route
-        render={props => getLoadableComponent(() => import(/* webpackChunkName: "noMatch" */'page/NoMatch'), props)}
       />
     </Switch>
   );

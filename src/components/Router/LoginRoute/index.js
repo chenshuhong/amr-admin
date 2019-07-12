@@ -5,10 +5,8 @@
  */
 import React from 'react';
 import { Redirect, Route } from "react-router-dom";
-import { connect } from 'react-redux';
-import { login } from 'page/App/reducer';
 
-function LoginRoute({
+export default function LoginRoute({
   component: Component, isAuthenticated, isLoginIng, onLoginSuccess, ...rest
 }) {
   return (
@@ -29,13 +27,3 @@ function LoginRoute({
     />
   );
 }
-
-const mapStateToProps = state => ({
-  ...state.app,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoginSuccess: () => dispatch(login()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginRoute);
