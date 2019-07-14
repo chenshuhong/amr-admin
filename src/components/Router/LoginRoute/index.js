@@ -5,25 +5,31 @@
  */
 import React from 'react';
 import { Redirect, Route } from "react-router-dom";
+import { inject } from "mobx-react";
 
-export default function LoginRoute({
-  component: Component, isAuthenticated, isLoginIng, onLoginSuccess, ...rest
-}) {
-  return (
-    <Route
-      {...rest}
-      render={props => (
-        isAuthenticated ? (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: props.location },
-            }}
-          />
-        ) : (
-          <Component {...props} isLoginIng={isLoginIng} onLoginSuccess={onLoginSuccess} />
-        )
-      )}
-    />
-  );
+@inject('appStore')
+class LoginRoute extends React.Component {
+  render() {
+    let { component: Component, appStore, ...rest } = this.props
+
+    return (
+      <Route
+        {...rest}
+        render={props => (
+          appStore.isAuthenticated ? (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: { from: props.location },
+              }}
+            />
+          ) : (
+            <Component {...props} isLoginIng={appStore.isLoginIng} onLoginSuccess={appStore.onLoginSuccess} />
+          )
+        )}
+      />
+    );
+  }
 }
+
+export default LoginRoute

@@ -7,7 +7,7 @@ class AppStore{
   @observable
   state={
     isAuthenticated:false,
-    isLoging:false
+    isLoginIng:false
   }
 }
 

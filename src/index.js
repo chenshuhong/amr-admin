@@ -9,9 +9,8 @@ import AppRouter from 'components/Router'
 import store from './store'
 import './common.less'
 
-// <Provider> 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可
 const element = (
-  <Provider>
+  <Provider appStore={store}>
     <AppRouter/>
   </Provider>
 );

@@ -49,9 +49,9 @@ module.exports = {
   optimization: {
     // webpack 在入口 chunk 中，包含了某些样板(boilerplate)，特别是 runtime 和 manifest
     // 利用runtimeChunk提取模板，防止每次改动入口文件不管有没变化都会变化
-    runtimeChunk: {
+    /*runtimeChunk: {
       name: entryPoint => `runtime~${entryPoint.name}`,
-    }
+    }*/
   },
   resolve: {
     // 设置别名
@@ -59,7 +59,6 @@ module.exports = {
       src: path.resolve(__dirname, 'src'),
       components: path.resolve(__dirname, 'src/components'),
       page: path.resolve(__dirname, 'src/page'),
-      reducer: path.resolve(__dirname, 'src/reducers'),
       utils: path.resolve(__dirname, 'src/utils'),
       config: path.resolve(__dirname, 'src/config'),
     },
@@ -71,7 +70,7 @@ module.exports = {
       include: path.resolve(__dirname, 'node_modules'),
     }, {
       test: /\.(css|less)$/,
-      use: getCssModuleLoaders(false),
+      use: getCssModuleLoaders(true),
       exclude: path.resolve(__dirname, 'node_modules'),
     }, /*{
       test: /\.js$/,
