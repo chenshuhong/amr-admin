@@ -2,6 +2,9 @@ const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
+const {
+  BundleAnalyzerPlugin
+} = require('webpack-bundle-analyzer')
 
 module.exports = merge.smartStrategy({
   'module.rules.use': 'prepend',
@@ -29,5 +32,6 @@ module.exports = merge.smartStrategy({
       filename: '[name].[contenthash:16].css',
       chunkFilename: '[name].[contenthash:16].css',
     }),
+    new BundleAnalyzerPlugin({analyzerMode:'static'})
   ],
 });

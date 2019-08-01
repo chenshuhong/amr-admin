@@ -1,9 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const {
-  BundleAnalyzerPlugin
-} = require('webpack-bundle-analyzer')
 
 /**
  * css loader 配置,加载顺序 less-loader>post-loader>css-loader>style-loader,但写的顺序要与之相反
@@ -43,7 +41,9 @@ module.exports = {
       title: 'React Todo Demo',
       template: './src/index.html',
     }), // 会自动把output生成的bundle与事先配置好template关联起来
-    new BundleAnalyzerPlugin({analyzerMode:'static'})
+    new webpack.ProvidePlugin({
+      'cn':'classnames'
+    })
   ],
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出目录
