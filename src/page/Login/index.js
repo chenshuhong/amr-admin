@@ -42,8 +42,8 @@ class Login extends React.Component {
               />,
             )}
           </Form.Item>
-          <Button type="primary" htmlType="submit" onClick={()=>appStore.login()}>
-            Log in
+          <Button type="primary" onClick={()=>appStore.login()}>
+            Login
           </Button>
         </div>
       </div>

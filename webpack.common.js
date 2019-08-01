@@ -53,9 +53,9 @@ module.exports = {
   optimization: {
     // webpack 在入口 chunk 中，包含了某些样板(boilerplate)，特别是 runtime 和 manifest
     // 利用runtimeChunk提取模板，防止每次改动入口文件不管有没变化都会变化
-    /*runtimeChunk: {
+    runtimeChunk: {
       name: entryPoint => `runtime~${entryPoint.name}`,
-    }*/
+    }
   },
   resolve: {
     // 设置别名
