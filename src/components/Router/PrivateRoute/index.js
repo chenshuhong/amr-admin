@@ -8,9 +8,10 @@ import { Redirect, Route } from "react-router-dom";
 import { inject } from "mobx-react";
 
 @inject('appStore')
-class PrivateRoute extends React.Component{
-  render(){
-    let { component: Component,appStore, ...rest } = this.props
+class PrivateRoute extends React.Component {
+  
+  render() {
+    let {component: Component, appStore, ...rest} = this.props
     return (
       <Route
         {...rest}
@@ -20,7 +21,7 @@ class PrivateRoute extends React.Component{
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: props.location },
+              state: {from: props.location},
             }}
           />
         ))

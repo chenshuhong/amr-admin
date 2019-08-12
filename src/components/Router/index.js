@@ -14,7 +14,7 @@ import routeConfig from 'config/routes.config'
 import Loading from 'components/Loading'
 import PrivateRoute from './PrivateRoute'
 import LoginRoute from './LoginRoute'
-import style from './index.less'
+import MatchScreen from 'components/MatchScreen'
 
 // react-loadable 实现代码分割
 function getLoadableComponent(componentImportFn, props) {
@@ -31,7 +31,6 @@ function getLoadableComponent(componentImportFn, props) {
 }
 
 function loopRoutes(routes, match = {}) {
-  console.log(match)
   const matchPath = match.path || '';
   return (
     // <Switch> 不是分组 <Route> 所必须的，但他通常很有用。 一个 <Switch> 会遍历其所有的子 <Route> 元素，并仅渲染与当前地址匹配的第一个元素。这有助于多个路由的路径匹配相同的路径名
@@ -64,15 +63,16 @@ function loopRoutes(routes, match = {}) {
         path="/login"
         component={getLoadableComponent(() => import(/* webpackChunkName: "login" */'page/Login'))}
       />
+      <Route component={getLoadableComponent(()=>import(/* webpackChunkName: "404" */'page/404'))}/>
     </Switch>
   );
 }
 
 const AppRouter = (props) => (
   <Router>
-    <div className={style.matchScreen}>
+    <MatchScreen>
       {loopRoutes(routeConfig,props)}
-    </div>
+    </MatchScreen>
   </Router>
 );
 

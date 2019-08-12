@@ -21,11 +21,16 @@ const getUrl = function(url,version) {
   if(config.mock){
     return window.location.origin + "/assets/mock/" + url.replace(/\//g, "-") + '.json'
   }else{
-    return `${config.baseUrl}/api/v1/` + url;
+    return `${config.baseUrl}/api/${version}/` + url;
   }
 }
 
 export default function(options){
   let { data, url, method = 'get',version = 'v1' } = options;
   let wholeUrl = getUrl(url,version)
+  return axios({
+    method,
+    url:wholeUrl,
+    data
+  })
 }

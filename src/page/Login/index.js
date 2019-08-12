@@ -4,26 +4,24 @@
  */
 import React from "react";
 import { Button, Form, Icon, Input } from "antd";
-import style from './index.less'
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
+import style from './style.less'
+import mod from './mobel'
 
-@inject('appStore')
 @observer
 class Login extends React.Component {
-
-  state={
-    username:'',
-    password:'',
-    loading:false
-  }
   
-  login = ()=>{
-  
+  validateLogin = ()=>{
+    this.props.form.validateFieldsAndScroll(['username','password'],err=>{
+      if (!err){
+        mod.login()
+      }
+    })
   }
 
   render() {
-    let {form,appStore} = this.props
-    let {username,password,loading} = this.state
+    let {form} = this.props
+    let {username,password,loading} = mod.state
     let {getFieldDecorator} = form
     return (
       <div className={style.flexContainer}>
@@ -56,7 +54,7 @@ class Login extends React.Component {
               />,
             )}
           </Form.Item>
-          <Button className={'mg2t'} size={'large'} type="primary" loading={this.state.loading} style={{width:'100%'}} onClick={this.login}>
+          <Button className={'mg2t'} size={'large'} type="primary" loading={loading} style={{width:'100%'}} onClick={this.validateLogin}>
             Login
           </Button>
         </div>

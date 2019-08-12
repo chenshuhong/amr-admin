@@ -4,7 +4,11 @@
  */
 const config = {
   mock:true,
-  baseUrl:'http://api.com'
+  baseUrl:'http://api.com',
+  cookie:{
+    username:'arm-admin-username',
+    auth:'arm-admin-auth'
+  }
 }
 
 export default config

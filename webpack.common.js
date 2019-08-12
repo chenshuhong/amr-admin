@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 /**
  * css loader 配置,加载顺序 less-loader>post-loader>css-loader>style-loader,但写的顺序要与之相反
@@ -19,7 +20,7 @@ function getCssModuleLoaders(isOpenCssModule) {
       options: {
         importLoaders: 2, // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, less-loader,针对css里面的@import资源
         modules: isOpenCssModule?{// 开启css module
-          localIdentName: '[path][name]_[local]-[hash:base64:8]',
+          localIdentName: '[local]-[hash:base64:8]',
         }:false,
       },
     },
@@ -42,8 +43,11 @@ module.exports = {
       template: './src/index.html',
     }), // 会自动把output生成的bundle与事先配置好template关联起来
     new webpack.ProvidePlugin({
-      'cn':'classnames'
-    })
+      'cn':'classnames',
+    }),
+    new CopyPlugin([
+      { from: 'src/assets', to: 'assets' },
+    ]),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出目录

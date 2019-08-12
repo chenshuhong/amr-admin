@@ -6,7 +6,10 @@
 import React from 'react';
 
 export default function (props) {
-  return (
-    <div>loading</div>
-  );
+  if (props.error) {
+    console.log(props.error)
+    return <div>error</div>;
+  } else {
+    return <div>Loading...</div>;
+  }
 }
