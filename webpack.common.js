@@ -59,7 +59,24 @@ module.exports = {
     // 利用runtimeChunk提取模板，防止每次改动入口文件不管有没变化都会变化
     runtimeChunk: {
       name: entryPoint => `runtime~${entryPoint.name}`,
-    }
+    },
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        libs: {
+          name: "chunk-libs",
+          test: /[\\/]node_modules[\\/]/,
+          priority: 10,
+          chunks: "initial" // 只打包初始时依赖的第三方
+        },
+        ant_icon: {
+          name: "chunk-antd", // 单独将 antd和其图标 拆包
+          priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
+          test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+          chunks: "initial" // 只打包初始时依赖的第三方
+        },
+      },
+    },
   },
   resolve: {
     // 设置别名

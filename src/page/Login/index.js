@@ -14,7 +14,7 @@ class Login extends React.Component {
   validateLogin = ()=>{
     this.props.form.validateFieldsAndScroll(['username','password'],err=>{
       if (!err){
-        mod.login()
+        mod.login(this.props.onLoginSuccess)
       }
     })
   }
@@ -36,6 +36,7 @@ class Login extends React.Component {
             })(
               <Input
                 size={'large'}
+                onChange={(e)=>mod.updateStore({username:e.target.value})}
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Username"
               />,
@@ -48,6 +49,7 @@ class Login extends React.Component {
             })(
               <Input
                 size={'large'}
+                onChange={(e)=>mod.updateStore({password:e.target.value})}
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 type="password"
                 placeholder="Password"

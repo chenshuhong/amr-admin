@@ -13,8 +13,8 @@ module.exports = merge.smartStrategy({
   // 启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 UglifyJsPlugin.
   mode: 'production',
   output: {
-    filename: '[name].[chunkhash:16].js', // 文件命名
-    chunkFilename: '[name].[chunkhash:16].js', // 代码分离每个chunk命名格式
+    filename: '[name].[contenthash:16].js', // 文件命名
+    chunkFilename: '[name].[contenthash:16].js', // 代码分离每个chunk命名格式
   },
   module: {
     rules: [{

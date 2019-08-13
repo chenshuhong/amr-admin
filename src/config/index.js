@@ -8,6 +8,9 @@ const config = {
   cookie:{
     username:'arm-admin-username',
     auth:'arm-admin-auth'
+  },
+  errorCode:{
+    unLogin:401
   }
 }
 

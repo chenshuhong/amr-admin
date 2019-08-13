@@ -4,6 +4,8 @@
  */
 import axios from 'axios';
 import config from 'config'
+import { showUnLoginModal, showNotification } from 'utils/notification'
+import appStore from 'src/store'
 /**
  * 获得api接口地址
  * @param  {String} url    接口地址
@@ -13,7 +15,7 @@ import config from 'config'
 const getUrl = function(url,version) {
   if(!url) {
     throw new Error('url should not be empty')
-  } else if(url.indexOf("http") >= 0) {
+  } else if(url.startsWith("http")) {
     return url
   }
   let str = ""
@@ -34,3 +36,35 @@ export default function(options){
     data
   })
 }
+
+//响应拦截
+axios.interceptors.response.use(({data})=>{
+  let {resultCode,resultMsg} = data
+  if (resultCode===0){
+    return data.data
+  }else if (resultCode === config.errorCode.unLogin) {
+    showUnLoginModal({
+      title:'登录信息失效',
+      description:resultMsg||'登录信息失效,请重新登录',
+      onClose:appStore.onLoginOut()
+    })
+  }else {
+    showNotification({
+      title:'系统提示',
+      description:resultMsg||'接口服务故障'
+    })
+  }
+},({data,status,statusText})=>{
+  if(status+'' === '401'){
+    showUnLoginModal({
+      title:'登录信息失效',
+      description:statusText||'登录信息失效,请重新登录',
+      onClose:appStore.onLoginOut()
+    })
+  }else{
+    showNotification({
+      title: '系统提示',
+      description: data.resultMsg||statusText || '接口服务故障'
+    }, 'warn')
+  }
+})

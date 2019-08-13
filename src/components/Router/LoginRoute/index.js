@@ -11,12 +11,12 @@ import { inject } from "mobx-react";
 class LoginRoute extends React.Component {
   render() {
     let { component: Component, appStore, ...rest } = this.props
-
+    let {hasLogin} = appStore.state
     return (
       <Route
         {...rest}
         render={props => (
-          appStore.isAuthenticated ? (
+          hasLogin ? (
             <Redirect
               to={{
                 pathname: "/",
@@ -24,7 +24,7 @@ class LoginRoute extends React.Component {
               }}
             />
           ) : (
-            <Component {...props} isLoginIng={appStore.isLoginIng} onLoginSuccess={appStore.onLoginSuccess} />
+            <Component {...props} onLoginSuccess={appStore.onLoginSuccess} />
           )
         )}
       />

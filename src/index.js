@@ -7,6 +7,7 @@ import React from "react";
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';
 import AppRouter from 'components/Router'
+
 import store from './store'
 import './common.less'
 

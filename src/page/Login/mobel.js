@@ -17,18 +17,28 @@ class Model{
   }
   
   @action
-   async login(){
+   async login(onLoginSuccess){
     let {username,password} = this.state
     this.state.loading = true
     try {
       let {auth} = await login({username,password})
       cookie.set(config.cookie.username,username,{ expires: 3 })
       cookie.set(config.cookie.auth,auth,{ expires: 3 })
-      window.router.push('/')
+      onLoginSuccess()
     }finally {
       runInAction(() => {
         this.state.loading = false
       });
+    }
+  }
+  
+  
+  // 更新状态
+  @action
+  updateStore = (payload={}) => {
+    this.state = {
+      ...this.state,
+      ...payload
     }
   }
 }

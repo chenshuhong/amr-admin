@@ -12,10 +12,12 @@ class PrivateRoute extends React.Component {
   
   render() {
     let {component: Component, appStore, ...rest} = this.props
+    let {hasLogin} = appStore.state
+    console.log(hasLogin)
     return (
       <Route
         {...rest}
-        render={props => (appStore.isAuthenticated ? (
+        render={props => (hasLogin ? (
           <Component {...props} />
         ) : (
           <Redirect
