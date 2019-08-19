@@ -1,6 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const common = require('./webpack.common.js');
 const {
   BundleAnalyzerPlugin
@@ -32,6 +33,7 @@ module.exports = merge.smartStrategy({
       filename: '[name].[contenthash:16].css',
       chunkFilename: '[name].[contenthash:16].css',
     }),
+    new OptimizeCssAssetsPlugin(),
     new BundleAnalyzerPlugin({analyzerMode:'static'})
   ],
 });

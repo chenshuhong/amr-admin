@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 
 /**
  * css loader 配置,加载顺序 less-loader>post-loader>css-loader>style-loader,但写的顺序要与之相反
@@ -14,14 +15,15 @@ const CopyPlugin = require('copy-webpack-plugin');
  * @returns {*[]}
  */
 function getCssModuleLoaders(isOpenCssModule) {
+  let lessPath = path.resolve('theme.less')
   return [
     {
       loader: 'css-loader',
       options: {
         importLoaders: 2, // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, less-loader,针对css里面的@import资源
-        modules: isOpenCssModule?{// 开启css module
+        modules: isOpenCssModule ? {// 开启css module
           localIdentName: '[local]-[hash:base64:8]',
-        }:false,
+        } : false,
       },
     },
     'postcss-loader',
@@ -29,25 +31,33 @@ function getCssModuleLoaders(isOpenCssModule) {
       loader: 'less-loader',
       options: {
         javascriptEnabled: true,
+        modifyVars: {
+          'hack': `true; @import "${lessPath}";`,
+        },
       },
     },
   ];
 }
 
 module.exports = {
-  entry: './src/index.js', // 入口文件，这里可以把babel-polyfill引进来
+  entry: './src/index.js', // 入口文件
   plugins: [
     new CleanWebpackPlugin(), // 每次构建清除dist目录
     new HtmlWebpackPlugin({
       title: 'React Todo Demo',
       template: './src/index.html',
     }), // 会自动把output生成的bundle与事先配置好template关联起来
+    new ScriptExtHtmlWebpackPlugin({
+      //`runtime` must same as runtimeChunk name. default is `runtime`
+      inline: /runtime~.*\.js$/
+    }),
     new webpack.ProvidePlugin({
-      'cn':'classnames',
+      'cn': 'classnames',
     }),
     new CopyPlugin([
-      { from: 'src/assets', to: 'assets' },
+      {from: 'src/assets', to: 'assets'},
     ]),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),//moment只用中文资源
   ],
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出目录
@@ -60,6 +70,7 @@ module.exports = {
     runtimeChunk: {
       name: entryPoint => `runtime~${entryPoint.name}`,
     },
+    moduleIds: 'hashed',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -69,7 +80,7 @@ module.exports = {
           priority: 10,
           chunks: "initial" // 只打包初始时依赖的第三方
         },
-        ant_icon: {
+        antd: {
           name: "chunk-antd", // 单独将 antd和其图标 拆包
           priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
           test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
