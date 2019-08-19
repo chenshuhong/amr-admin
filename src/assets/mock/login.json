@@ -1,5 +1,6 @@
 {
   "resultCode": 0,
+  "resultMsg":"密码错误",
   "data": {
     "username": "白夜",
     "auth": "sdfldsajfldsfldsfds"

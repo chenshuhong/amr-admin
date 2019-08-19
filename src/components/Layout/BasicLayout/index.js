@@ -4,7 +4,6 @@
  */
 import React from "react";
 import { Breadcrumb, Icon, Layout, Menu,  } from 'antd'
-
 const {Header, Content, Sider} = Layout;
 const {SubMenu} = Menu
 
@@ -12,7 +11,7 @@ export default class extends React.Component {
   render() {
     let props = this.props
     return (
-      <Layout>
+      <Layout className={'match_screen'}>
         <Header className="header">
           <div className="logo" />
           <Menu
@@ -92,7 +91,9 @@ export default class extends React.Component {
                 minHeight: 280,
               }}
             >
-              Content
+              {
+                props.children
+              }
             </Content>
           </Layout>
         </Layout>

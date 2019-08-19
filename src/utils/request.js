@@ -6,6 +6,12 @@ import axios from 'axios';
 import config from 'config'
 import { showUnLoginModal, showNotification } from 'utils/notification'
 import appStore from 'src/store'
+
+function sleep(time = 1000) {
+  return new Promise(resolve=>{
+    setTimeout(()=>resolve(),time)
+  })
+}
 /**
  * 获得api接口地址
  * @param  {String} url    接口地址
@@ -18,18 +24,17 @@ const getUrl = function(url,version) {
   } else if(url.startsWith("http")) {
     return url
   }
-  let str = ""
   // 本机开发环境，则当前assets/mock下面的json
   if(config.mock){
-    return window.location.origin + "/assets/mock/" + url.replace(/\//g, "-") + '.json'
+    return sleep().then(()=>window.location.origin + "/assets/mock/" + url.replace(/\//g, "-") + '.json')
   }else{
     return `${config.baseUrl}/api/${version}/` + url;
   }
 }
 
-export default function(options){
+export default async function(options){
   let { data, url, method = 'get',version = 'v1' } = options;
-  let wholeUrl = getUrl(url,version)
+  let wholeUrl = await getUrl(url,version)
   return axios({
     method,
     url:wholeUrl,
@@ -54,6 +59,7 @@ axios.interceptors.response.use(({data})=>{
       description:resultMsg||'接口服务故障'
     })
   }
+  return Promise.reject(data)
 },({data,status,statusText})=>{
   if(status+'' === '401'){
     showUnLoginModal({

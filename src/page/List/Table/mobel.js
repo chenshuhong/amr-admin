@@ -9,23 +9,7 @@ import {login} from './serv'
 class Model{
   @observable
   state = {
-    username:'',
-    password:'',
-    loading:false
-  }
   
-  @action
-   async login(onLoginSuccess){
-    let {username,password} = this.state
-    this.state.loading = true
-    try {
-      let {auth} = await login({username,password})
-      onLoginSuccess(auth,username)
-    }finally {
-      runInAction(() => {
-        this.state.loading = false
-      });
-    }
   }
   
   

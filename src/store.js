@@ -8,12 +8,14 @@ import config from "src/config";
 class AppStore{
   @observable
   state={
-    hasLogin:false
+    hasLogin:!!cookie.get(config.cookie.auth)
   }
   
   @action
-  onLoginSuccess=()=>{
+  onLoginSuccess=(auth,username)=>{
     this.state.hasLogin = true
+    cookie.set(config.cookie.username,username,{ expires: 3 })
+    cookie.set(config.cookie.auth,auth,{ expires: 3 })
     window.router.push('/')
   }
   

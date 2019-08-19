@@ -5,8 +5,11 @@
 const routes = [
   {
     path: '/',
-    name: '首页',
-    component: ()=>import(/* webpackChunkName: "home" */'page/Home')
+    component:()=>import(/* webpackChunkName: "home" */'page/Home'),
+  },
+  {
+    path:'/list/table',
+    component: ()=>import(/* webpackChunkName: "table" */'page/List/Table'),
   }
 ]
 
