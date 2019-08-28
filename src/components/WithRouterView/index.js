@@ -1,6 +1,7 @@
 /**
  * @Author: 陈树鸿
  * @Date: 2019-08-12 20:34
+ * 该组件是为了给window注入router，方便跳转调用
  */
 import React from "react";
 import { withRouter } from "react-router-dom";

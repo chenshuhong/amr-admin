@@ -33,7 +33,9 @@ module.exports = merge.smartStrategy({
       filename: '[name].[contenthash:16].css',
       chunkFilename: '[name].[contenthash:16].css',
     }),
+    //css压缩
     new OptimizeCssAssetsPlugin(),
+    //模块分析工具
     new BundleAnalyzerPlugin({analyzerMode:'static'})
   ],
 });

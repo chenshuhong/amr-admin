@@ -25,8 +25,7 @@ function getLoadableComponent(componentImportFn,) {
   return Component;
 }
 
-function loopRoutes(routes, match = {}) {
-  const matchPath = match.path || '';
+function loadRoutes(routes) {
   return (
     // <Switch> 不是分组 <Route> 所必须的，但他通常很有用。 一个 <Switch> 会遍历其所有的子 <Route> 元素，并仅渲染与当前地址匹配的第一个元素。这有助于多个路由的路径匹配相同的路径名
     // extra:精确匹配
@@ -60,7 +59,7 @@ function loopRoutes(routes, match = {}) {
 const AppRouter = (props) => (
   <Router>
     <WithRouterView>
-      {loopRoutes(routeConfig)}
+      {loadRoutes(routeConfig)}
     </WithRouterView>
   </Router>
 );

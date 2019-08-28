@@ -11,9 +11,8 @@ const config = merge.smartStrategy({
   mode: 'development',
   devtool:'cheap-module-source-map',
   // 在代码发生变化后自动编译代码
-  // 以下配置告知 webpack-dev-server，在 localhost:8080(默认端口,可通过port配置) 下建立服务，将 dist 目录下的文件，作为可访问文件。同时启用 webpack 的模块热替换特性：
+  // 以下配置告知 webpack-dev-server，在 localhost:8082下建立服务，将编译生成的文件，作为可访问文件。同时启用 webpack 的模块热替换特性：
   devServer: {
-    contentBase: 'dist',
     port: 8082,
     hot: true,
   },

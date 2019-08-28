@@ -11,7 +11,7 @@ import AppRouter from 'components/Router'
 import store from './store'
 import './common.less'
 
-// 不允许在动作外部修改状态
+// 在某处观察到的所有状态都需要通过动作进行更改
 configure({ enforceActions: 'observed' });
 
 const element = (

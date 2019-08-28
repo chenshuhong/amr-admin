@@ -44,13 +44,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(), // 每次构建清除dist目录
     new HtmlWebpackPlugin({
-      title: 'React Todo Demo',
+      title: 'arm',
       template: './src/index.html',
-    }), // 会自动把output生成的bundle与事先配置好template关联起来
+    }),
+    // 会自动把output生成的runtime文件转为内联方式，减少http调用
     new ScriptExtHtmlWebpackPlugin({
       //`runtime` must same as runtimeChunk name. default is `runtime`
       inline: /runtime~.*\.js$/
     }),
+    //项目可以直接使用，不用导入
     new webpack.ProvidePlugin({
       'cn': 'classnames',
     }),
@@ -70,12 +72,13 @@ module.exports = {
     runtimeChunk: {
       name: entryPoint => `runtime~${entryPoint.name}`,
     },
+    //锁住moduleIds，不然每次新增或删除文件，hash就变了
     moduleIds: 'hashed',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
         libs: {
-          name: "chunk-libs",
+          name: "chunk-libs", //将初始时依赖的node_modules拆包
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
           chunks: "initial" // 只打包初始时依赖的第三方
@@ -123,7 +126,7 @@ module.exports = {
         {
           loader: 'url-loader',
           options: {
-            limit: 8192,
+            limit: 10240,//将10k以下的文件用base64方式引入，减少http引用
           },
         },
       ],
