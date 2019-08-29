@@ -1,0 +1,18 @@
+{
+  "resultCode": 0,
+  "data": {
+    "list": [
+      {
+        "id": "324324",
+        "name": "华为"
+      },
+      {
+        "id": "324324",
+        "name": "华为"
+      }
+    ],
+    "total": 66,
+    "pageNum": 1,
+    "pageSize": 10
+  }
+}
