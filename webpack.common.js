@@ -55,6 +55,7 @@ module.exports = {
     //项目可以直接使用，不用导入
     new webpack.ProvidePlugin({
       'cn': 'classnames',
+      'React':'React'
     }),
     new CopyPlugin([
       {from: 'src/assets', to: 'assets'},

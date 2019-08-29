@@ -4,6 +4,7 @@
  */
 import React from "react";
 import { Card,Form } from "antd";
+import CardNoBorder from 'components/CardNoBorder'
 import { observer } from "mobx-react";
 import style from './style.less'
 import mod from './mobel'
@@ -14,9 +15,9 @@ class Table extends React.Component {
   render() {
     return (
       <div >
-        <Card>
+        <CardNoBorder>
           列表页
-        </Card>
+        </CardNoBorder>
       </div>
     )
   }

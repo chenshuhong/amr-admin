@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 import Loadable from 'react-loadable';// react-loadable 对于有动态导入的组件来说是一个高阶组件。它可以自动处理各种边缘情况，并且使代码拆分变得简单！
 import routeConfig from 'config/routes.config'
-import Loading from 'components/Loading'
+import Loading from 'components/PageLoading'
 import AuthRoute from './AuthRoute'
 import WithRouterView from 'components/WithRouterView'
 import BasicLayout from 'components/Layout/BasicLayout'

@@ -64,35 +64,21 @@ class SiderView extends React.Component {
     return openKeys
   }
   
-  /*componentWillReceiveProps(newProps) {
-    let paths = this.getPath(newProps.pathname, false)
+  componentWillReceiveProps(newProps) {
+    let paths = this.getPath(newProps.location.pathname)
+    let openKeys = this.getOpenKeys(paths)
     this.setState({
       selectedKeys: [paths.join('/')],
-      menuConfig: this.getMenu(newProps.pathname),
+      openKeys
     })
-    
-    if (paths.length > 0) {
-      let openKeys = []
-      openKeys.push(paths[0])
-      if (paths.length>1){
-        openKeys.push(paths[0]+'/'+paths[1])
-      }
-      this.setState({
-        openKeys,
-      })
-    }
-  }*/
+  }
   
   renderMenuItems(menus) {
     return getMenus(menus)
   }
   
-  onMenuClick({item, key, keyPath}) {
+  onMenuClick({item, key}) {
     window.router.push(key)
-  }
-  
-  onMenuSelect({item, key, keyPath}) {
-  
   }
   
   onOpenChange(openKeys) {
@@ -116,7 +102,6 @@ class SiderView extends React.Component {
             mode="inline"
             selectedKeys={this.state.selectedKeys}
             openKeys={this.state.openKeys}
-            onSelect={this.onMenuSelect}
             onOpenChange={this.onOpenChange}
             onClick={this.onMenuClick}>
             {this.renderMenuItems(menus)}
