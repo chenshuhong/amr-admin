@@ -100,6 +100,7 @@ module.exports = {
       page: path.resolve(__dirname, 'src/page'),
       utils: path.resolve(__dirname, 'src/utils'),
       config: path.resolve(__dirname, 'src/config'),
+      img: path.resolve(__dirname, 'src/assets/img'),
     },
   },
   module: {
@@ -121,7 +122,7 @@ module.exports = {
       include: path.resolve(__dirname, 'src'),
       loader: 'babel-loader', // Rule.loader 是 Rule.use: [ { loader } ] 的简写。
     }, {
-      test: /\.(png|jpg|gif)$/i,
+      test: /\.(png|jpg|gif|svg)$/i,
       use: [
         {
           loader: 'url-loader',

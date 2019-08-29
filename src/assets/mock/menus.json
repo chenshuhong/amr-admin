@@ -1,0 +1,19 @@
+{
+  "resultCode": 0,
+  "data": [
+    {
+      "name": "首页",
+      "routePath":"/"
+    },
+    {
+      "name":"列表",
+      "routePath":"/list",
+      "children":[
+        {
+          "name": "表格",
+          "routePath":"/list/table"
+        }
+      ]
+    }
+  ]
+}

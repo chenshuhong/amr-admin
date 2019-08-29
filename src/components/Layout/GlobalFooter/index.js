@@ -19,4 +19,9 @@ const GlobalFooter = ({ className, links, copyright }) => {
   );
 };
 
+// 指定 props 的默认值：
+GlobalFooter.defaultProps = {
+  copyright: 'Ant Design + React + Mobx ©2018 Created by baiye'
+};
+
 export default GlobalFooter;

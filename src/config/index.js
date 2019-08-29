@@ -11,7 +11,8 @@ const config = {
   },
   errorCode:{
     unLogin:401
-  }
+  },
+  
 }
 
 export default config

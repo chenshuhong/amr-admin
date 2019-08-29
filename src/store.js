@@ -2,13 +2,15 @@
  * @Author: 陈树鸿
  * @Date: 2019-07-12 19:22
  */
-import { observable,action } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 import cookie from 'js-cookie'
 import config from "src/config";
+import {getMenus} from "config/serv"
 class AppStore{
   @observable
   state={
-    hasLogin:!!cookie.get(config.cookie.auth)
+    hasLogin:!!cookie.get(config.cookie.auth),
+    menus:[]
   }
   
   @action
@@ -17,6 +19,7 @@ class AppStore{
     cookie.set(config.cookie.username,username,{ expires: 3 })
     cookie.set(config.cookie.auth,auth,{ expires: 3 })
     window.router.push('/')
+    this.getMenus()
   }
   
   @action
@@ -25,6 +28,14 @@ class AppStore{
     cookie.set(config.cookie.auth,'')
     cookie.set(config.cookie.username,'')
     window.router.push('/login')
+  }
+  
+  @action
+  getMenus = async ()=>{
+    let menus = await getMenus()
+    runInAction(() => {
+      this.state.menus = menus
+    });
   }
 }
 
