@@ -10,12 +10,16 @@ class AppStore{
   @observable
   state={
     hasLogin:!!cookie.get(config.cookie.auth),
+    username:cookie.get(config.cookie.username),
+    auth:cookie.get(config.cookie.auth),
     menus:[]
   }
   
   @action
   onLoginSuccess=(auth,username)=>{
     this.state.hasLogin = true
+    this.state.username = username
+    this.state.auth = auth
     cookie.set(config.cookie.username,username,{ expires: 3 })
     cookie.set(config.cookie.auth,auth,{ expires: 3 })
     window.router.push('/')
