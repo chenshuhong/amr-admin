@@ -40,28 +40,9 @@ class GlobalHeader extends React.Component{
   }
 
   // 执行退出
-  async doLogout(){
-    let self = this
-    // // 注销登录
-    try {
-      let { resultCode, resultMsg }  = await request({
-        url: `users/logout`,
-        method: `post`,
-      });
-      if('0' !== '' + resultCode){
-        messageInform(resultMsg || '注销失败', 'error')
-        return false
-      }
-    } catch (error) {
-    }
-    
-    // 清除Cookie
-    clearCookie()
-    // 注销成功提示
+  doLogout(){
     message.success('注销成功')
-
-    // 跳转到登录页
-    this.props.history.push('/login')
+    this.props.appStore.onLoginOut()
   }
 
   // 打开密码对话框
@@ -99,15 +80,11 @@ class GlobalHeader extends React.Component{
       onOk: () => {
         this.doLogout()
       },
-      onCancel() {
-      },
     });
   }
 
   // 下拉菜单点击事件
   handleClickMenu(e){
-    let self = this
-    // 点击那一项
     switch('' + e.key){
       case 'PersonalInfo':
         self.setState({
@@ -115,10 +92,10 @@ class GlobalHeader extends React.Component{
         })
         break;
       case 'logout':
-        self.showLogoutConfirm()
+        this.showLogoutConfirm()
         break
       case 'forgetPassword':
-        self.showPwdDlg(e)
+        this.showPwdDlg(e)
         break
       default:
         console.log('unknown key')
@@ -129,10 +106,10 @@ class GlobalHeader extends React.Component{
   getDropDownMenu(){
     return (
       <Menu onClick={ e => this.handleClickMenu(e) }>
-        <Menu.Item key="PersonalInfo">个人资料</Menu.Item>
+        {/*<Menu.Item key="PersonalInfo">个人资料</Menu.Item>
         <Menu.Item key="forgetPassword">
           <a>修改密码</a>
-        </Menu.Item>
+        </Menu.Item>*/}
         <Menu.Item key="logout">
           <a>注销</a>
         </Menu.Item>
@@ -144,7 +121,7 @@ class GlobalHeader extends React.Component{
   renderUserInfo(){
     return (
       <div className={styles.user}>
-        <Dropdown overlay={ this.getDropDownMenu() } trigger={['hover']}>
+        <Dropdown placement="bottomRight" overlay={ this.getDropDownMenu() }>
           <a href="#">
             <img src={avatar} alt={'头像'}/>
             <span>{this.props.appStore.state.username}</span>

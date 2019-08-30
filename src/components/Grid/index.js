@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'antd';
 import PropTypes from 'prop-types';
 import { cloneDeep, last, max, isEmpty } from 'lodash';
-import styles from './GridLess.less';
+import styles from './index.less';
 
 //分页配置
 const pageConfig = {
@@ -155,7 +155,7 @@ class TableComponent extends Component {
     }
 
     //是否展示序列
-    isDisplayOrder && copyColumns.unshift({
+    copyColumns.unshift({
       title: '序号',
       dataIndex: 'commonOrder',
       key: 'commonOrder',
@@ -163,7 +163,7 @@ class TableComponent extends Component {
         return (pageNum - 1) * pageSize + index + 1;
       }
     });
-
+    console.log(dataSource)
     return (
       <Table
         id={this.id}

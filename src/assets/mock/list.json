@@ -4,62 +4,62 @@
     "list": [
       {
         "id": "324324",
-        "分类": "华为",
-        "型号":"meta3",
+        "category": "华为",
+        "name":"meta3",
         "price":3999
       },
       {
         "id": "3534543",
-        "name": "小米",
-        "型号":"note2",
+        "category": "小米",
+        "name":"note2",
         "price":2999
       },
       {
         "id": "4343443",
-        "name": "OPPO",
-        "型号":"x2",
+        "category": "OPPO",
+        "name":"x2",
         "price":1999
       },
       {
         "id": "435345",
-        "name": "小米",
-        "型号":"红米3",
+        "category": "小米",
+        "name":"红米3",
         "price":1399
       },
       {
         "id": "456456",
-        "name": "苹果",
-        "型号":"XS",
+        "category": "苹果",
+        "name":"XS",
         "price":7999
       },
       {
         "id": "35234543",
-        "name": "魅族",
-        "型号":"M8",
+        "category": "魅族",
+        "name":"M8",
         "price":2499
       },
       {
         "id": "76765765",
-        "name": "三星",
-        "型号":"S9",
+        "category": "三星",
+        "name":"S9",
         "price":8999
       },
       {
         "id": "435435",
-        "name": "诺基亚",
-        "型号":"N7",
+        "category": "诺基亚",
+        "name":"N7",
         "price":4699
       },
       {
         "id": "435432543",
-        "name": "华为",
-        "型号":"P30",
+        "category": "华为",
+        "name":"P30",
         "price":16666
       },
       {
         "id": "5465436",
-        "name": "坚果",
-        "型号":"J7",
+        "category": "坚果",
+        "name":"J7",
         "price":2699
       }
     ],
