@@ -10,6 +10,10 @@ const routes = [
   {
     path:'/list/table',
     component: ()=>import(/* webpackChunkName: "table" */'page/List/Table'),
+  },
+  {
+    path:'/component/editor',
+    component:()=>import(/* webpackChunkName: "editor" */'page/component/editor')
   }
 ]
 
