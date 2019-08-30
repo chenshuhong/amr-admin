@@ -5,5 +5,5 @@
 import { Card } from "antd";
 
 export default function (props) {
-  return (<Card bordered={false} {...props}/>)
+  return (<Card className={'mg2t'} bordered={false} {...props}/>)
 }

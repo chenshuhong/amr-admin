@@ -8,7 +8,7 @@ import { inject } from "mobx-react";
 import Sider from 'components/Layout/Sider'
 import GlobalFooter from 'components/Layout/GlobalFooter'
 import GlobalHeader from 'components/Layout/GlobalHeader'
-
+import styles from './index.less'
 const {Content} = Layout;
 
 @inject('appStore')
@@ -24,13 +24,13 @@ class BasicLayout extends React.Component {
     let {appStore, children} = this.props
     return (
       <Layout className={'match_screen'}>
-        <Sider/>
+        <Sider className={styles.sider}/>
         <Layout>
-          <GlobalHeader/>
-          <Content className={'pd2'}>
+          <GlobalHeader className={styles.header}/>
+          <Content className={styles.content}>
             {children}
           </Content>
-          <GlobalFooter/>
+          <GlobalFooter className={styles.footer}/>
         </Layout>
       </Layout>
     )

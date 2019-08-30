@@ -92,7 +92,7 @@ class SiderView extends React.Component {
     return (
       <Sider
         theme='light'
-        className={styles.sider}>
+        className={cn(this.props.className,styles.sider)}>
         <div className={styles.logo}>
           <img src={logo} alt="logo" />
           <span className={cn('font_38',styles.title)}>AMR</span>

@@ -34,6 +34,12 @@ class Table extends React.Component {
     return (
       <div >
         <CardNoBorder>
+          填充
+        </CardNoBorder>
+        <CardNoBorder>
+          填充
+        </CardNoBorder>
+        <CardNoBorder>
           <Grid
             nameSpace={'rightsMgntListMod'}
             data={{
